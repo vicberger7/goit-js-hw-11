@@ -46,58 +46,34 @@ function displayImages(images, clearPrevious = true) {
     imageContainer.innerHTML = '';
   }
 
-  const galleryDiv = document.createElement('div');
-  galleryDiv.classList.add('gallery');
-
   showLoader();
-
   setTimeout(() => {
-    images.forEach(image => {
-      const cardLink = document.createElement('a');
-      cardLink.href = image.webformatURL;
-      cardLink.classList.add('lightbox');
+    const galleryHTML = images
+      .map(image => {
+        return `
+      <a href="${image.largeImageURL}" class="lightbox">
+        <div class="image-card">
+          <img src="${image.webformatURL}" alt="${image.tags}">
+          <span>Likes: ${image.likes}</span>
+          <span>Views: ${image.views}</span>
+          <span>Comments: ${image.comments}</span>
+          <span>Downloads: ${image.downloads}</span>
+        </div>
+      </a>
+    `;
+      })
+      .join('');
 
-      const card = document.createElement('div');
-      card.classList.add('image-card');
+    imageContainer.innerHTML = galleryHTML;
 
-      const imgElement = document.createElement('img');
-      imgElement.src = image.webformatURL;
-      imgElement.alt = image.tags;
-
-      card.appendChild(imgElement);
-
-      const likesElement = document.createElement('span');
-      likesElement.textContent = `Likes: ${image.likes}`;
-
-      const viewsElement = document.createElement('span');
-      viewsElement.textContent = `Views: ${image.views}`;
-
-      const commentsElement = document.createElement('span');
-      commentsElement.textContent = `Comments: ${image.comments}`;
-
-      const downloadsElement = document.createElement('span');
-      downloadsElement.textContent = `Downloads: ${image.downloads}`;
-
-      card.appendChild(likesElement);
-      card.appendChild(viewsElement);
-      card.appendChild(commentsElement);
-      card.appendChild(downloadsElement);
-
-      imageContainer.appendChild(card);
-    });
-
-    lightbox.refresh();
     hideLoader();
+    lightbox.refresh();
   }, 2000);
 }
 
-const lightbox = new SimpleLightbox('.js-image-container a ', {
+const lightbox = new SimpleLightbox('.js-image-container  a', {
   captionsData: 'alt',
   captionDelay: 250,
-});
-
-lightbox.on('show.simplelightbox', function (e) {
-  console.log('Lightbox is shown', e);
 });
 
 refs.formEl.addEventListener('submit', e => {
