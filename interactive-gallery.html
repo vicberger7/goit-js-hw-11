@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1-gallery</title>
-    <link rel="stylesheet" href="./css/interactive-gallery.css" />
+    
+    <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers2.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-b81b9f86.js">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/vendor-a51daae5.css">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/interactive-gallery-0765c1ff.css">
   </head>
   <body>
     
@@ -20,7 +24,7 @@
         </div>
         <button type="submit" class="button">Search</button>
       </form>
-      <div class="loader"></div>
+     <div class="loader"></div> 
       <div
         class="image-container js-image-container"
       >
@@ -29,8 +33,26 @@
         <a href="images/image1.jpg"><img src="images/thumbs/thumb1.jpg" alt="" title=""/></a>
         <a href="images/image2.jpg"><img src="images/thumbs/thumb2.jpg" alt="" title="Beautiful Image"/></a>
       </div>
+      <div class="stats-container">
+    <div class="stat">
+        <span class="label"></span>
+        <span class="number"></span>
+    </div>
+    <div class="stat">
+        <span class="label"></span>
+        <span class="number"></span>
+    </div>
+    <div class="stat">
+        <span class="label"></span>
+        <span class="number"></span>
+    </div>
+    <div class="stat">
+        <span class="label"></span>
+        <span class="number"></span>
+    </div>
+</div>
       </div>
     </div>
-    <script src="./js/interactive-gallery.js" type="module"></script>
+    
   </body>
 </html>
