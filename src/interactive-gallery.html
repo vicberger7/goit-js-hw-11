@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1-gallery</title>
+    <link rel="stylesheet" href="./css/interactive-gallery.css" />
+  </head>
+  <body>
+    
+    <div class="block">
+      <form class="search-form js-search-form" data-id="1">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-input"
+            name="query"
+            placeholder="Search images.."
+          />
+        </div>
+        <button type="submit" class="button">Search</button>
+      </form>
+      <div class="loader"></div>
+      <div
+        class="image-container js-image-container"
+      >
+        </div>
+        <div class="gallery">
+        <a href="images/image1.jpg"><img src="images/thumbs/thumb1.jpg" alt="" title=""/></a>
+        <a href="images/image2.jpg"><img src="images/thumbs/thumb2.jpg" alt="" title="Beautiful Image"/></a>
+      </div>
+      </div>
+    </div>
+    <script src="./js/interactive-gallery.js" type="module"></script>
+  </body>
+</html>
