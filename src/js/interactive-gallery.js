@@ -2,6 +2,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import cssLoader from 'css-loader';
 
 const refs = {
   formEl: document.querySelector('.js-search-form[data-id="1"]'),
@@ -82,6 +83,17 @@ lightbox.on('show.simplelightbox', function (e) {
   console.log('Lightbox is shown', e);
 });
 
+const loader = document.querySelector('.loader');
+loader.style.display = 'none';
+
+function showLoader() {
+  loader.style.display = 'block';
+}
+
+function hideLoader() {
+  loader.style.display = 'none';
+}
+
 refs.formEl.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -94,12 +106,11 @@ refs.formEl.addEventListener('submit', e => {
     });
     return;
   }
-  const loader = document.querySelector('.loader');
-  loader.style.display = 'block';
+
+  showLoader();
 
   searchImage(name)
     .then(data => {
-      loader.style.display = 'none';
       if (data.hits.length === 0) {
         iziToast.error({
           title: 'Error',
@@ -109,10 +120,10 @@ refs.formEl.addEventListener('submit', e => {
       } else {
         displayImages(data.hits);
       }
+      hideLoader();
     })
     .catch(error => {
       console.error(error);
-      loader.style.display = 'none';
       iziToast.error({
         title: 'Error',
         message:
