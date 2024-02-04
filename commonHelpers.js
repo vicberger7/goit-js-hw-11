@@ -9,4 +9,4 @@ import{S as l,i}from"./assets/vendor-b81b9f86.js";(function(){const t=document.c
         </div>
       </a>
     `).join("");o.innerHTML=n,f(),h.refresh()},2e3)}const h=new l(".js-image-container  a",{captionsData:"alt",captionDelay:250});u.formEl.addEventListener("submit",s=>{s.preventDefault();const t=s.target.elements.query.value;if(!t){i.error({title:"Помилка",message:"Будь ласка, введіть текст для пошуку"});return}m(t).then(o=>{o.hits.length===0?i.error({title:"Error",message:"Sorry, there are no images matching your search query. Please try again!"}):p(o.hits)}).catch(o=>{console.error(o),i.error({title:"Error",message:"Sorry, there are no images matching your search query. Please try again!"})})});
-//# sourceMappingURL=commonHelpers2.js.map
+//# sourceMappingURL=commonHelpers.js.map

@@ -2,13 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HW-09</title>
+    <title>1-gallery</title>
     
-    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-e3b0c442.css">
+    <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-b81b9f86.js">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/vendor-a51daae5.css">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-b9528ddc.css">
   </head>
   <body>
-    <a href="./interactive-gallery.html">Interactive-gallery</a>
+    
+    <div class="block">
+      <form class="search-form js-search-form" data-id="1">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-input"
+            name="query"
+            placeholder="Search images.."
+          />
+        </div>
+        <button type="submit" class="button">Search</button>
+      </form>
+     <div class="loader"></div> 
+      <div
+        class="image-container js-image-container"
+      >
+      </div>
+      </div>
+    </div>
+    
   </body>
 </html>
