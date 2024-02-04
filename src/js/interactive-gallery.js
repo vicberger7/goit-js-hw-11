@@ -28,61 +28,6 @@ function searchImage(imagename) {
     });
 }
 
-function displayImages(images, clearPrevious = true) {
-  const imageContainer = document.querySelector('.js-image-container');
-
-  if (clearPrevious) {
-    imageContainer.innerHTML = '';
-  }
-
-  const galleryDiv = document.createElement('div');
-  galleryDiv.classList.add('gallery');
-
-  images.forEach(image => {
-    const cardLink = document.createElement('a');
-    cardLink.href = image.webformatURL;
-    cardLink.classList.add('lightbox');
-
-    const card = document.createElement('div');
-    card.classList.add('image-card');
-
-    const imgElement = document.createElement('img');
-    imgElement.src = image.webformatURL;
-    imgElement.alt = image.tags;
-
-    card.appendChild(imgElement);
-
-    const likesElement = document.createElement('span');
-    likesElement.textContent = `Likes: ${image.likes}`;
-
-    const viewsElement = document.createElement('span');
-    viewsElement.textContent = `Views: ${image.views}`;
-
-    const commentsElement = document.createElement('span');
-    commentsElement.textContent = `Comments: ${image.comments}`;
-
-    const downloadsElement = document.createElement('span');
-    downloadsElement.textContent = `Downloads: ${image.downloads}`;
-
-    card.appendChild(likesElement);
-    card.appendChild(viewsElement);
-    card.appendChild(commentsElement);
-    card.appendChild(downloadsElement);
-
-    imageContainer.appendChild(card);
-  });
-  lightbox.refresh();
-}
-
-const lightbox = new SimpleLightbox('.js-image-container a ', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
-
-lightbox.on('show.simplelightbox', function (e) {
-  console.log('Lightbox is shown', e);
-});
-
 const loader = document.querySelector('.loader');
 loader.style.display = 'none';
 
@@ -93,6 +38,67 @@ function showLoader() {
 function hideLoader() {
   loader.style.display = 'none';
 }
+
+function displayImages(images, clearPrevious = true) {
+  const imageContainer = document.querySelector('.js-image-container');
+
+  if (clearPrevious) {
+    imageContainer.innerHTML = '';
+  }
+
+  const galleryDiv = document.createElement('div');
+  galleryDiv.classList.add('gallery');
+
+  showLoader();
+
+  setTimeout(() => {
+    images.forEach(image => {
+      const cardLink = document.createElement('a');
+      cardLink.href = image.webformatURL;
+      cardLink.classList.add('lightbox');
+
+      const card = document.createElement('div');
+      card.classList.add('image-card');
+
+      const imgElement = document.createElement('img');
+      imgElement.src = image.webformatURL;
+      imgElement.alt = image.tags;
+
+      card.appendChild(imgElement);
+
+      const likesElement = document.createElement('span');
+      likesElement.textContent = `Likes: ${image.likes}`;
+
+      const viewsElement = document.createElement('span');
+      viewsElement.textContent = `Views: ${image.views}`;
+
+      const commentsElement = document.createElement('span');
+      commentsElement.textContent = `Comments: ${image.comments}`;
+
+      const downloadsElement = document.createElement('span');
+      downloadsElement.textContent = `Downloads: ${image.downloads}`;
+
+      card.appendChild(likesElement);
+      card.appendChild(viewsElement);
+      card.appendChild(commentsElement);
+      card.appendChild(downloadsElement);
+
+      imageContainer.appendChild(card);
+    });
+
+    lightbox.refresh();
+    hideLoader();
+  }, 2000);
+}
+
+const lightbox = new SimpleLightbox('.js-image-container a ', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
+lightbox.on('show.simplelightbox', function (e) {
+  console.log('Lightbox is shown', e);
+});
 
 refs.formEl.addEventListener('submit', e => {
   e.preventDefault();
@@ -107,8 +113,6 @@ refs.formEl.addEventListener('submit', e => {
     return;
   }
 
-  showLoader();
-
   searchImage(name)
     .then(data => {
       if (data.hits.length === 0) {
@@ -120,7 +124,6 @@ refs.formEl.addEventListener('submit', e => {
       } else {
         displayImages(data.hits);
       }
-      hideLoader();
     })
     .catch(error => {
       console.error(error);

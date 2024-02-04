@@ -59,7 +59,7 @@
 }
 .loader:before {
   content: '';
-  animation: 1s print linear alternate infinite;
+  animation: 0.5s print linear alternate infinite;
 }
 .loader:after {
   content: '';
